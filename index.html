@@ -8,25 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <div class="note">
-            <img src="/mnt/data/image.png" alt="ロックに紅葉 6✖️9＝54" class="note-image">
+        <div class="left-panel">
+            <div class="note">
+                <img src="/mnt/data/title_logo.png" alt="ロックに紅葉 6✖️9＝54" class="note-image">
+            </div>
+            <div class="upload-section">
+                <h2>曲を選択してください</h2>
+                <div class="upload">
+                    <input type="file" id="music-upload" accept="audio/*">
+                    <button id="upload-button">音楽ファイルをアップロード</button>
+                </div>
+                <div class="options">
+                    <button class="audio-option" data-source="source1.mp3">音源1</button>
+                    <button class="audio-option" data-source="source2.mp3">音源2</button>
+                    <button class="audio-option" data-source="source3.mp3">音源3</button>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="play-button" class="control-button play">再生</button>
+                <button id="stop-button" class="control-button stop">停止</button>
+            </div>
         </div>
-        <div class="upload">
-            <input type="file" id="music-upload" accept="audio/*">
-            <button id="upload-button">音楽ファイルをアップロード</button>
-        </div>
-        <div class="options">
-            <button class="audio-option" data-source="source1.mp3">音源1</button>
-            <button class="audio-option" data-source="source2.mp3">音源2</button>
-            <button class="audio-option" data-source="source3.mp3">音源3</button>
-        </div>
-        <div class="controls">
-            <button id="play-button" class="control-button play">再生</button>
-            <button id="stop-button" class="control-button stop">停止</button>
-        </div>
-        <div class="output-note">
-            <p>画像出力</p>
-            <img id="generated-image" src="" alt="Generated Image">
+        <div class="right-panel">
+            <div class="output-note">
+                <p>画像出力</p>
+                <img id="generated-image" src="" alt="Generated Image">
+            </div>
         </div>
     </div>
     <script src="scripts.js"></script>
