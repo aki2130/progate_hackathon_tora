@@ -1,0 +1,3 @@
+[submodule "progate_hackathon_tora_data"]
+	path = progate_hackathon_tora_data
+	url = git@github.com:aki2130/progate_hackathon_tora_data.git
