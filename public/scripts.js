@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             songItem.className = 'song-item';
             songItem.textContent = song.name;
             songItem.addEventListener('click', () => {
+                fetchSongInfo(song.name);
                 audioSource = `/audio/${song.genre.toLowerCase()}/${song.name}.mp3`;
                 console.log(`Playing audio from: ${audioSource}`); // デバッグ用
                 resetAudio();
@@ -36,6 +37,23 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             songList.appendChild(songItem);
         });
+    }
+
+    async function fetchSongInfo(songName) {
+        try {
+            const response = await fetch(`/song-info?name=${encodeURIComponent(songName)}`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const songInfo = await response.json();
+            displaySongInfo(songInfo);
+        } catch (error) {
+            console.error('Failed to fetch song info:', error);
+        }
+    }
+
+    function displaySongInfo(song) {
+        console.log(`曲名: ${song.name}, ジャンル: ${song.genre}`);
     }
 
     function resetAudio() {

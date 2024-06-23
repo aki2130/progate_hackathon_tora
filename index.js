@@ -49,6 +49,22 @@ app.get('/random-songs', (req, res) => {
     });
 });
 
+app.get('/song-info', (req, res) => {
+    const songName = req.query.name;
+    db.get('SELECT * FROM music WHERE name = ?', [songName], (err, row) => {
+        if (err) {
+            console.error("Database query error:", err);
+            res.status(500).send("Database query error");
+            return;
+        }
+        if (row) {
+            res.json(row);
+        } else {
+            res.status(404).send("Song not found");
+        }
+    });
+});
+
 function randomElement(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
