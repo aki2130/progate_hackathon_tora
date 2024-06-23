@@ -18,7 +18,7 @@ const output = await replicate.run(
   "jagilley/controlnet-canny:aff48af9c68d162388d230a2ab003f68d2638d88307bdaf1c2f1ac95079c9613",
   {
     input: {
-      image: "https://replicate.delivery/pbxt/IMPLYODUwdmHTsnLKi5YiFccIAK6g9l5KK1FNyCtpGS1g0UN/1200.jpeg",
+      image: "https://i.gyazo.com/1a3a6674dc07d4e829ac17c280126325.png",
       scale: 9,
       prompt: `a ${genre} metallic cyborg bird`,
       a_prompt: "best quality, extremely detailed",
