@@ -26,7 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
             songItem.className = 'song-item';
             songItem.textContent = song.name;
             songItem.addEventListener('click', () => {
-                audioSource = `/audio/${song.genre}/${song.name}.mp3`;
+                audioSource = `/audio/${song.genre.toLowerCase()}/${song.name}.mp3`;
+                console.log(`Playing audio from: ${audioSource}`); // デバッグ用
                 resetAudio();
                 audio.src = audioSource;
                 audio.play();

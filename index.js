@@ -7,7 +7,9 @@ const port = 3000;
 const db = new sqlite3.Database('music.sqlite3');
 
 // 静的ファイルの提供
-app.use('/audio', express.static(path.join(__dirname, 'progate_hackathon_tora_data')));
+app.use('/audio/jpop', express.static(path.join(__dirname, 'jpop')));
+app.use('/audio/kpop', express.static(path.join(__dirname, 'kpop')));
+app.use('/audio/rock', express.static(path.join(__dirname, 'rock')));
 app.use('/mnt/data', express.static(path.join(__dirname, 'mnt/data')));
 app.use(express.static(path.join(__dirname, 'public')));
 
