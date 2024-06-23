@@ -46,7 +46,8 @@ const downloadImage = async (url, outputPath) => {
 
 // 保存するファイルパスを設定
 const outputImagePath1 = path.resolve("image_generate/output/output_image_1.png");
-const outputImagePath2 = path.resolve("image_generate/output/output_image_2.png");
+// const outputImagePath2 = path.resolve("image_generate/output/output_image_2.png");
+const outputImagePath2 = path.resolve("public/image_generate/output.png");
 
 // 画像をダウンロードして保存
 await downloadImage(imageUrls[0], outputImagePath1);
