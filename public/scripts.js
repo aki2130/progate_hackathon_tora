@@ -85,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             audio.pause();
             isPlaying = false;
             playTime += Date.now() - startTime;
+        	generateImage();
         }
     });
 
@@ -98,7 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function generateImage() {
         // ここにStable Diffusionを使った画像生成の処理を追加
         // 生成された画像をimgタグに表示
-        document.getElementById('generated-image').src = 'generated-image-url';
+		let file_path = "./image_generate/output/output_image_2.png"
+        document.getElementById('generated-image').src = file_path;
     }
 
     // ページが読み込まれたら曲を表示
