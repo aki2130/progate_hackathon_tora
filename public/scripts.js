@@ -4,9 +4,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
     let startTime = 0;
     let playTime = 0;
+    let selectedGenre = '';
+
     const songList = document.getElementById('song-list');
 
-    // 曲リストを取得し、表示する関数
     async function fetchAndDisplaySongs() {
         try {
             const response = await fetch('/random-songs');
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 audio.play();
                 isPlaying = true;
                 startTime = Date.now();
+                selectedGenre = song.genre;
             });
             songList.appendChild(songItem);
         });
@@ -46,15 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Network response was not ok');
             }
             const songInfo = await response.json();
-            displaySongInfo(songInfo);
-            localStorage.setItem('selectedGenre', songInfo.genre); // ジャンルをローカルストレージに保存
+            console.log(`曲名: ${songInfo.name}, ジャンル: ${songInfo.genre}`);
+            selectedGenre = songInfo.genre;
         } catch (error) {
             console.error('Failed to fetch song info:', error);
         }
-    }
-
-    function displaySongInfo(song) {
-        console.log(`曲名: ${song.name}, ジャンル: ${song.genre}`);
     }
 
     function resetAudio() {
@@ -90,16 +88,27 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.addEventListener('ended', () => {
         isPlaying = false;
         playTime += Date.now() - startTime;
-        // 画像生成の処理を追加
-        generateImage();
+        generateImage(selectedGenre);
     });
 
-    function generateImage() {
-        // ここにStable Diffusionを使った画像生成の処理を追加
-        // 生成された画像をimgタグに表示
-        document.getElementById('generated-image').src = 'generated-image-url';
+    async function generateImage(genre) {
+        try {
+            const response = await fetch('/generate-image', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ genre }),
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            document.getElementById('generated-image').src = result.imageUrl;
+        } catch (error) {
+            console.error('Failed to generate image:', error);
+        }
     }
 
-    // ページが読み込まれたら曲を表示
     fetchAndDisplaySongs();
 });
