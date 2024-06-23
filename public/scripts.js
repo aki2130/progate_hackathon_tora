@@ -47,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const songInfo = await response.json();
             displaySongInfo(songInfo);
+            localStorage.setItem('selectedGenre', songInfo.genre); // ジャンルをローカルストレージに保存
         } catch (error) {
             console.error('Failed to fetch song info:', error);
         }
