@@ -28,20 +28,20 @@ for i in range(len(genre)):
 
 		results = spotify.search(q=basename_without_ext,limit=1, type="track", market="JP", offset=0)
 
-		song_id = ""
+		music_id = ""
 
 		for track in results["tracks"]["items"]:
-		    song_id = track["id"]
+		    music_id = track["id"]
 
 		#print(j, basename_without_ext, genre[i])
-		data = (j, basename_without_ext, genre[i], song_id)
+		data = (j, basename_without_ext, genre[i], music_id)
 		print(data)
-		cur.execute('INSERT INTO music (id, name, genre, song_id) VALUES (?, ?, ?, ?)', data)
+		cur.execute('INSERT INTO music (id, name, genre, music_id) VALUES (?, ?, ?, ?)', data)
 
 		j += 1
 
 conn.commit()
-cur.execute('SELECT * FROM new_music')
+cur.execute('SELECT * FROM music')
 
 conn.close()
 
