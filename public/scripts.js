@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 曲リストを取得し、表示する関数
     async function fetchAndDisplaySongs() {
         try {
-            const response = await fetch('/random-songs'); // フルURLを使用
+            const response = await fetch('/random-songs');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
