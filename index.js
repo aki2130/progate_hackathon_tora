@@ -4,7 +4,10 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
-const db = new sqlite3.Database('music.sqlite3');
+const { spawn } = require('child_process');
+
+const db = new sqlite3.Database('music2.db');
+//const db = new sqlite3.Database('music.sqlite3');
 
 // 静的ファイルの提供
 app.use('/audio/jpop', express.static(path.join(__dirname, 'jpop')));
@@ -58,7 +61,13 @@ app.get('/song-info', (req, res) => {
             return;
         }
         if (row) {
+			const pythonProcess = spawn('python', ['get_detail.py']);
+			pythonProcess.stdout.on('data', (data) => {
+			  console.log(`Output: ${data}`);
+			});
+
             res.json(row);
+
         } else {
             res.status(404).send("Song not found");
         }

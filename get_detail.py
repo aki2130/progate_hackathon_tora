@@ -6,9 +6,6 @@ import json
 with open('auth.json') as f:
     di = json.load(f)
 
-print(di['Client_ID'])  # deep insider：キーを指定して値を取得
-print(di['Clientr_secret'])  # deep insider：キーを指定して値を取得
-
 client_id = di['Client_ID'] # App作成時のCliend ID
 client_secret = di['Clientr_secret'] # App作成時のCliend Secret
 

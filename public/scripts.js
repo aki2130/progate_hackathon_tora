@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displaySongInfo(song) {
-        console.log(`曲名: ${song.name}, ジャンル: ${song.genre}`);
+        console.log(`曲名: ${song.name}, ジャンル: ${song.genre}, ID：${song.music_id}`);
+        //console.log(`曲名: ${song.name}, ジャンル: ${song.genre}`);
     }
 
     function resetAudio() {
